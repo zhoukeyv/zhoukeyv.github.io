@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>编辑友链 - zky</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page">
+
+        <header id="header">
+            <img class="avatar" src="img/avatar.png" alt="头像" />
+            <h1>周柯宇</h1>
+            <p class="bio">小学六年级学生，热爱设计和代码。</p>
+        </header>
+
+        <aside id="lsidebar">
+            <nav class="side-nav">
+                <a href="index.html">主页</a>
+                <a href="projects.html">项目</a>
+                <a href="skills.html">技能</a>
+                <a href="links.html">友链</a>
+                <a href="contact.html">联系</a>
+            </nav>
+        </aside>
+
+        <main id="main">
+			<h2>编辑友链</h2>
+
+			<!-- 友链添加表单 -->
+			<div class="edit-form">
+				<h3>添加友链</h3>
+
+				<label>名字</label>
+				<input type="text" id="input-name" placeholder="如：张三">
+
+				<label>描述</label>
+				<input type="text" id="input-desc" placeholder="如：一个热爱编程的同学">
+
+				<label>GitHub 用户名（可选）</label>
+				<input type="text" id="input-github" placeholder="如：zhangsan">
+
+				<label>洛谷 UID（可选）</label>
+				<input type="text" id="input-luogu" placeholder="如：123456">
+
+				<label>CodeForces 用户名（可选）</label>
+				<input type="text" id="input-codeforces" placeholder="如：zhangsan">
+
+				<label>AtCoder 用户名（可选）</label>
+				<input type="text" id="input-atcoder" placeholder="如：zhangsan">
+
+				<label>Email（可选）</label>
+				<input type="text" id="input-email" placeholder="如：zhangsan@example.com">
+
+				<button class="btn-save" onclick="addFriend()">添加</button>
+			</div>
+
+			<!-- 已有友链 -->
+			<h3>已有友链</h3>
+			<div class="friend-list-edit" id="friend-list-edit"></div>
+
+			<!-- 我的账号编辑 -->
+			<h2 style="margin-top: 50px;">我的账号</h2>
+			<div class="edit-form">
+				<h3>修改我的社交账号</h3>
+
+				<label>GitHub 用户名</label>
+				<input type="text" id="my-github" placeholder="如：zhoukeyv">
+
+				<label>Email</label>
+				<input type="text" id="my-email" placeholder="如：coder1232026@outlook.com">
+
+				<label>洛谷 UID</label>
+				<input type="text" id="my-luogu" placeholder="如：1534256">
+
+				<label>AtCoder 用户名</label>
+				<input type="text" id="my-atcoder" placeholder="如：cqbzzky">
+
+				<label>CodeForces 用户名</label>
+				<input type="text" id="my-codeforces" placeholder="如：cqbzzky">
+
+				<button class="btn-save" onclick="saveMyAccounts()">保存</button>
+			</div>
+		</main>
+
+        <aside id="rsidebar">
+			<h3>找到我</h3>
+			<div class="social-links" id="my-social-links"></div>
+		</aside>
+
+        <footer id="footer">
+            <p>&copy; 2026 周柯宇</p>
+        </footer>
+
+    </div>
+
+    <script src="edit.js"></script>
+	<script src="my-accounts.js"></script>
+</body>
+</html>
