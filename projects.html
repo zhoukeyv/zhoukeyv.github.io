@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目 - zky</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div id="page">
+
+        <header id="header">
+            <img class="avatar" src="img/avatar.png" alt="头像" />
+            <h1>周柯宇</h1>
+            <p class="bio">小学六年级学生，热爱设计和代码。</p>
+        </header>
+
+        <aside id="lsidebar">
+            <nav class="side-nav">
+                <a href="index.html">主页</a>
+                <a href="projects.html" class="active">项目</a>
+                <a href="skills.html">技能</a>
+                <a href="links.html">友链</a>
+                <a href="contact.html">联系</a>
+            </nav>
+        </aside>
+
+        <main id="main">
+            <section id="projects">
+                <h2>项目</h2>
+                <div class="project-list">
+                    <div class="project-card">
+                        <h3>Graph-Editor</h3>
+                        <p>对<a href="https://csacademy.com/app/graph_editor/" target="_blank">csacademy graph editor</a>的升级版，可以生成数据并排布成你想要的样子。</p>
+                        <a href="https://github.com/zhoukeyv/Graph-Editor" target="_blank">查看详情 →</a>
+                        <br>
+                        <a href="https://zhoukeyv.github.io/Graph-Editor" target="_blank">使用 →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>USACO translate</h3>
+                        <p>用 API 翻译 USACO 题面，由于需要自备 API ，所以加入了在 Github 上存档的功能，只要有人翻译过，别人也可以看到。</p>
+                        <a href="https://greasyfork.org/zh-CN/scripts/573025-usaco%E9%A2%98%E9%9D%A2%E7%BF%BB%E8%AF%91" target="_blank">查看详情 →</a>
+                        <br>
+                        <a href="https://github.com/zhoukeyv/USACO-translate-storage" target="_blank">gitub存档 →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Github Storage</h3>
+                        <p><s>使用违规操作</s>在Github Release里做了一个网盘，在cloudflare上写了个worker用来转发，但是现在烂尾ing</p>
+                        <a href="https://github.com/zhoukeyv/storage" target="_blank">查看详情 →</a>
+                        <br>
+                        <a href="https://dash.cloudflare.com/62ae35524145ee1b1f666a6a08bb1cc2/workers/services/view/drive-proxy/production" target="_blank">Worker →</a>
+                    </div>
+                    <div class="project-card">
+                        <h3>Temp</h3>
+                        <p><s>收集所有人的账号cookie</s></p>
+                        <a href="#">查看详情 →</a>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <aside id="rsidebar">
+			<h3>找到我</h3>
+			<div class="social-links" id="my-social-links"></div>
+		</aside>
+
+        <footer id="footer">
+            <p>&copy; 2026 周柯宇</p>
+        </footer>
+
+    </div>
+
+	<script src="my-accounts.js"></script>
+</body>
+</html>
