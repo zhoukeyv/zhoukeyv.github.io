@@ -33,6 +33,11 @@
         "name": "TamperMonkey",
         "url": "https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN",
         "desc": "可以运行脚本。（Edge）"
+      },
+      {
+        "name": "Adblock",
+        "url": "https://microsoftedge.microsoft.com/addons/detail/adblock-%E6%8B%A6%E6%88%AA%E6%95%B4%E4%B8%AA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B9%BF%E5%91%8A/ndcileolkflehcjpmjnfbnaibdcgglog?hl=zh-CN",
+        "desc": "用来屏蔽广告。（Edge）"
       }
     ]
   }
