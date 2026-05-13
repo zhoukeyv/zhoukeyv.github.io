@@ -50,6 +50,12 @@
     "category": "脚本",
     "icon": "",
     "desc": "脚本",
-    "tools": []
+    "tools": [
+      {
+        "name": "Atcoder Better",
+        "url": "https://update.greasyfork.org/scripts/471106/Atcoder%20Better%21.user.js",
+        "desc": ""
+      }
+    ]
   }
 ]
