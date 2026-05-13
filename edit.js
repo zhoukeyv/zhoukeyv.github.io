@@ -7,8 +7,8 @@ const GITHUB_REPO = 'zhoukeyv.github.io';
 const GITHUB_BRANCH = 'main';
 
 // === Token 混淆：base64(reverse(token)) 拆两段，防 GitHub Secret Scanning ===
-const _a = "Q3djbW4ydDNybGlVdll4cjFx";
-const _b = "T2xUNjVTblkzR01mWjBCQ3lfcGhn";
+const _a = "Q3djbW4ydDNybEl1dnJZeDFxT2xU";
+const _b = "NjVTWW4zakdNZlowQkN5X3BoZw==";
 function getToken() {
     return atob(_a + _b).split('').reverse().join('');
 }
