@@ -19,6 +19,7 @@ const ACCOUNTS_PATH = 'data/my-accounts.json';
 const ghApi = path => `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${path}`;
 
 let editingIndex = -1;
+let accountsLoaded = false;
 
 // ========== 工具 ==========
 function escapeHtml(str) {
@@ -127,16 +128,33 @@ async function saveFriends(friends) {
 
 // ========== 我的账号 ==========
 async function loadMyAccounts() {
-    try {
-        const { content } = await ghGetFile(ACCOUNTS_PATH);
-        if (content) return JSON.parse(content);
-    } catch (e) { console.warn('账号加载失败，回退本地', e); }
+    const { content } = await ghGetFile(ACCOUNTS_PATH);
+    if (content) return JSON.parse(content);
+    return {};
+}
 
-    const data = localStorage.getItem(MY_ACCOUNTS_KEY);
-    return data ? JSON.parse(data) : {};
+async function fillMyAccountsForm() {
+    try {
+        const a = await loadMyAccounts();
+        document.getElementById('my-github').value     = a.github     || '';
+        document.getElementById('my-email').value      = a.email      || '';
+        document.getElementById('my-luogu').value      = a.luogu      || '';
+        document.getElementById('my-atcoder').value    = a.atcoder    || '';
+        document.getElementById('my-codeforces').value = a.codeforces || '';
+        accountsLoaded = true;
+    } catch (e) {
+        console.error('加载账号失败', e);
+        alert('⚠️ 加载我的账号失败，已禁用保存按钮，请刷新页面重试');
+        accountsLoaded = false;
+    }
 }
 
 async function saveMyAccounts() {
+    if (!accountsLoaded) {
+        alert('❌ 账号未加载成功，禁止保存以防覆盖原数据。请刷新页面。');
+        return;
+    }
+
     const accounts = {
         github:     document.getElementById('my-github').value.trim(),
         email:      document.getElementById('my-email').value.trim(),
@@ -144,6 +162,16 @@ async function saveMyAccounts() {
         atcoder:    document.getElementById('my-atcoder').value.trim(),
         codeforces: document.getElementById('my-codeforces').value.trim()
     };
+
+    // 必填校验：5 个账号都不能为空
+    const emptyFields = Object.entries(accounts)
+        .filter(([k, v]) => !v)
+        .map(([k]) => k);
+
+    if (emptyFields.length > 0) {
+        alert('❌ 以下账号不能为空：' + emptyFields.join(', '));
+        return;
+    }
 
     localStorage.setItem(MY_ACCOUNTS_KEY, JSON.stringify(accounts));
 
@@ -154,15 +182,6 @@ async function saveMyAccounts() {
         console.error(e);
         alert('❌ 同步失败：' + e.message);
     }
-}
-
-async function fillMyAccountsForm() {
-    const a = await loadMyAccounts();
-    document.getElementById('my-github').value     = a.github     || '';
-    document.getElementById('my-email').value      = a.email      || '';
-    document.getElementById('my-luogu').value      = a.luogu      || '';
-    document.getElementById('my-atcoder').value    = a.atcoder    || '';
-    document.getElementById('my-codeforces').value = a.codeforces || '';
 }
 
 // ========== 渲染友链 ==========
