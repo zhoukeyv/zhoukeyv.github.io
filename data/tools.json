@@ -45,5 +45,11 @@
         "desc": "使 cph-ng 可以直接提交。（Edge）"
       }
     ]
+  },
+  {
+    "category": "脚本",
+    "icon": "",
+    "desc": "",
+    "tools": []
   }
 ]
