@@ -38,6 +38,11 @@
         "name": "Adblock",
         "url": "https://microsoftedge.microsoft.com/addons/detail/adblock-%E6%8B%A6%E6%88%AA%E6%95%B4%E4%B8%AA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%B9%BF%E5%91%8A/ndcileolkflehcjpmjnfbnaibdcgglog?hl=zh-CN",
         "desc": "用来屏蔽广告。（Edge）"
+      },
+      {
+        "name": "cph-ng submit",
+        "url": "https://microsoftedge.microsoft.com/addons/detail/cphng-%E6%8F%90%E4%BA%A4/hfpfdaggmljfccmnfljldojbgfhpfomb",
+        "desc": "使 cph-ng 可以直接提交。（Edge）"
       }
     ]
   }
