@@ -15,13 +15,17 @@ function getToken() {
 
 const FRIENDS_PATH  = 'data/friends.json';
 const ACCOUNTS_PATH = 'data/my-accounts.json';
+const TOOLS_PATH    = 'data/tools.json';
 
 const ghApi = path => `https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/${path}`;
 
 let editingIndex = -1;
 let accountsLoaded = false;
+let toolsData = [];
+let currentCatIndex = -1;
+let toolsLoaded = false;
 
-// ========== 工具 ==========
+// ========== 工具函数 ==========
 function escapeHtml(str) {
     const div = document.createElement('div');
     div.textContent = str ?? '';
@@ -33,7 +37,6 @@ function extractUser(url, prefix) {
     return url.replace(prefix, '');
 }
 
-// UTF-8 安全的 base64 编解码
 function b64ToUtf8(b64) {
     const bytes = Uint8Array.from(atob(b64.replace(/\n/g, '')), c => c.charCodeAt(0));
     return new TextDecoder('utf-8').decode(bytes);
@@ -87,7 +90,6 @@ async function ghPutFile(path, obj, sha) {
     }
 }
 
-// 带重试的写入：自动处理 409 (sha 冲突)
 async function ghPutFileWithRetry(path, obj, maxRetries = 4) {
     let lastError;
     for (let i = 0; i < maxRetries; i++) {
@@ -126,65 +128,6 @@ async function saveFriends(friends) {
     console.log('✅ friends.json 已同步到 GitHub');
 }
 
-// ========== 我的账号 ==========
-async function loadMyAccounts() {
-    const { content } = await ghGetFile(ACCOUNTS_PATH);
-    if (content) return JSON.parse(content);
-    return {};
-}
-
-async function fillMyAccountsForm() {
-    try {
-        const a = await loadMyAccounts();
-        document.getElementById('my-github').value     = a.github     || '';
-        document.getElementById('my-email').value      = a.email      || '';
-        document.getElementById('my-luogu').value      = a.luogu      || '';
-        document.getElementById('my-atcoder').value    = a.atcoder    || '';
-        document.getElementById('my-codeforces').value = a.codeforces || '';
-        accountsLoaded = true;
-    } catch (e) {
-        console.error('加载账号失败', e);
-        alert('⚠️ 加载我的账号失败，已禁用保存按钮，请刷新页面重试');
-        accountsLoaded = false;
-    }
-}
-
-async function saveMyAccounts() {
-    if (!accountsLoaded) {
-        alert('❌ 账号未加载成功，禁止保存以防覆盖原数据。请刷新页面。');
-        return;
-    }
-
-    const accounts = {
-        github:     document.getElementById('my-github').value.trim(),
-        email:      document.getElementById('my-email').value.trim(),
-        luogu:      document.getElementById('my-luogu').value.trim(),
-        atcoder:    document.getElementById('my-atcoder').value.trim(),
-        codeforces: document.getElementById('my-codeforces').value.trim()
-    };
-
-    // 必填校验：5 个账号都不能为空
-    const emptyFields = Object.entries(accounts)
-        .filter(([k, v]) => !v)
-        .map(([k]) => k);
-
-    if (emptyFields.length > 0) {
-        alert('❌ 以下账号不能为空：' + emptyFields.join(', '));
-        return;
-    }
-
-    localStorage.setItem(MY_ACCOUNTS_KEY, JSON.stringify(accounts));
-
-    try {
-        await ghPutFileWithRetry(ACCOUNTS_PATH, accounts);
-        alert('✅ 我的账号已同步到 GitHub');
-    } catch (e) {
-        console.error(e);
-        alert('❌ 同步失败：' + e.message);
-    }
-}
-
-// ========== 渲染友链 ==========
 async function renderFriends() {
     const friends = await loadFriends();
     const container = document.getElementById('friend-list-edit');
@@ -218,7 +161,6 @@ async function renderFriends() {
     });
 }
 
-// ========== 添加 / 修改 / 删除 ==========
 async function addFriend() {
     const name           = document.getElementById('input-name').value.trim();
     const desc           = document.getElementById('input-desc').value.trim();
@@ -293,56 +235,278 @@ function clearFriendForm() {
         .forEach(id => document.getElementById(id).value = '');
 }
 
-const TOOLS_RAW = 'https://raw.githubusercontent.com/zhoukeyv/zhoukeyv.github.io/main/data/tools.json';
-
-function escapeHtml(str) {
-    const div = document.createElement('div');
-    div.textContent = str ?? '';
-    return div.innerHTML;
+// ========== 我的账号 ==========
+async function loadMyAccounts() {
+    const { content } = await ghGetFile(ACCOUNTS_PATH);
+    if (content) return JSON.parse(content);
+    return {};
 }
 
-async function loadTools() {
+async function fillMyAccountsForm() {
     try {
-        const r = await fetch(TOOLS_RAW + '?t=' + Date.now(), { cache: 'no-cache' });
-        if (r.ok) return await r.json();
-    } catch (e) { console.warn('加载工具失败', e); }
-    return [];
+        const a = await loadMyAccounts();
+        document.getElementById('my-github').value     = a.github     || '';
+        document.getElementById('my-email').value      = a.email      || '';
+        document.getElementById('my-luogu').value      = a.luogu      || '';
+        document.getElementById('my-atcoder').value    = a.atcoder    || '';
+        document.getElementById('my-codeforces').value = a.codeforces || '';
+        accountsLoaded = true;
+    } catch (e) {
+        console.error('加载账号失败', e);
+        alert('⚠️ 加载我的账号失败，已禁用保存按钮，请刷新页面重试');
+        accountsLoaded = false;
+    }
 }
 
-function renderTools(categories) {
-    const container = document.getElementById('tools-container');
-    if (!categories || !categories.length) {
-        container.innerHTML = '<p style="color:#999;text-align:center;">暂无工具。</p>';
+async function saveMyAccounts() {
+    if (!accountsLoaded) {
+        alert('❌ 账号未加载成功，禁止保存以防覆盖原数据。请刷新页面。');
         return;
     }
 
-    container.innerHTML = categories.map(cat => `
-        <section class="tool-category">
-            <div class="tool-category-header">
-                <h3>
-                    ${cat.icon ? `<span class="tool-category-icon">${escapeHtml(cat.icon)}</span>` : ''}
-                    ${escapeHtml(cat.category || '')}
-                </h3>
-                ${cat.desc ? `<p class="tool-category-desc">${escapeHtml(cat.desc)}</p>` : ''}
-            </div>
-            <div class="tool-list">
-                ${(cat.tools || []).map(t => `
-                    <a class="tool-card" href="${escapeHtml(t.url)}" target="_blank" rel="noopener">
-                        <div class="tool-card-name">${escapeHtml(t.name)}</div>
-                        ${t.desc ? `<div class="tool-card-desc">${escapeHtml(t.desc)}</div>` : ''}
-                        <div class="tool-card-url">${escapeHtml(t.url)}</div>
-                    </a>
-                `).join('')}
-            </div>
-        </section>
+    const accounts = {
+        github:     document.getElementById('my-github').value.trim(),
+        email:      document.getElementById('my-email').value.trim(),
+        luogu:      document.getElementById('my-luogu').value.trim(),
+        atcoder:    document.getElementById('my-atcoder').value.trim(),
+        codeforces: document.getElementById('my-codeforces').value.trim()
+    };
+
+    const emptyFields = Object.entries(accounts)
+        .filter(([k, v]) => !v)
+        .map(([k]) => k);
+
+    if (emptyFields.length > 0) {
+        alert('❌ 以下账号不能为空：' + emptyFields.join(', '));
+        return;
+    }
+
+    localStorage.setItem(MY_ACCOUNTS_KEY, JSON.stringify(accounts));
+
+    try {
+        await ghPutFileWithRetry(ACCOUNTS_PATH, accounts);
+        alert('✅ 我的账号已同步到 GitHub');
+    } catch (e) {
+        console.error(e);
+        alert('❌ 同步失败：' + e.message);
+    }
+}
+
+// ============================================================
+// ========== 工具管理 ==========
+// ============================================================
+async function loadToolsData() {
+    const { content } = await ghGetFile(TOOLS_PATH);
+    return content ? JSON.parse(content) : [];
+}
+
+async function saveToolsData() {
+    await ghPutFileWithRetry(TOOLS_PATH, toolsData);
+}
+
+async function initTools() {
+    try {
+        toolsData = await loadToolsData();
+        if (!Array.isArray(toolsData)) toolsData = [];
+        toolsLoaded = true;
+        if (toolsData.length && currentCatIndex === -1) currentCatIndex = 0;
+        renderCatList();
+        renderCatDetail();
+    } catch (e) {
+        console.error('加载工具失败', e);
+        alert('⚠️ 加载工具数据失败：' + e.message);
+        toolsLoaded = false;
+    }
+}
+
+function renderCatList() {
+    const box = document.getElementById('tools-cat-items');
+    if (!box) return;
+    if (!toolsData.length) {
+        box.innerHTML = '<p style="color:#999;font-size:13px;margin:10px 0;">还没有分类</p>';
+        return;
+    }
+    box.innerHTML = toolsData.map((c, i) => `
+        <div class="cat-item ${i === currentCatIndex ? 'active' : ''}" onclick="selectCategory(${i})">
+            <span class="cat-item-label">
+                ${escapeHtml(c.icon || '📁')} ${escapeHtml(c.category || '(未命名)')}
+            </span>
+            <span class="cat-item-actions">
+                <button onclick="event.stopPropagation();moveCategory(${i},-1)" title="上移">↑</button>
+                <button onclick="event.stopPropagation();moveCategory(${i},1)" title="下移">↓</button>
+                <button onclick="event.stopPropagation();deleteCategory(${i})" title="删除">✕</button>
+            </span>
+        </div>
     `).join('');
 }
 
-document.addEventListener('DOMContentLoaded', async () => {
-    const data = await loadTools();
-    renderTools(data);
-});
+function selectCategory(i) {
+    currentCatIndex = i;
+    renderCatList();
+    renderCatDetail();
+}
 
+function renderCatDetail() {
+    const box = document.getElementById('tools-cat-detail');
+    if (!box) return;
+    if (currentCatIndex < 0 || !toolsData[currentCatIndex]) {
+        box.innerHTML = '<p style="color:#999;text-align:center;padding:40px 0;">← 请选择或新建分类</p>';
+        return;
+    }
+    const cat = toolsData[currentCatIndex];
+
+    box.innerHTML = `
+        <div class="edit-form">
+            <h3>编辑分类信息</h3>
+            <label>Emoji 图标</label>
+            <input id="cat-icon" placeholder="如：💻 🤖 📚" value="${escapeHtml(cat.icon || '')}">
+            <label>分类名</label>
+            <input id="cat-name" placeholder="如：在线评测" value="${escapeHtml(cat.category || '')}">
+            <label>分类描述（可选）</label>
+            <input id="cat-desc" placeholder="如：常用 OJ 平台" value="${escapeHtml(cat.desc || '')}">
+            <button class="btn-save" onclick="saveCategoryMeta()">保存分类信息</button>
+        </div>
+
+        <div class="edit-form">
+            <h3>添加工具到「${escapeHtml(cat.category || '(未命名)')}」</h3>
+            <label>工具名</label>
+            <input id="new-tool-name" placeholder="如：Luogu">
+            <label>URL</label>
+            <input id="new-tool-url" placeholder="如：https://www.luogu.com.cn">
+            <label>描述（可选）</label>
+            <input id="new-tool-desc" placeholder="如：洛谷 OJ">
+            <button class="btn-save" onclick="addTool()">+ 添加工具</button>
+        </div>
+
+        <h3 style="margin-top:20px;">该分类下的工具</h3>
+        <div id="tool-items">
+            ${!(cat.tools && cat.tools.length)
+                ? '<p style="color:#999;">还没有工具。</p>'
+                : cat.tools.map((t, j) => `
+                    <div class="tool-item">
+                        <div class="tool-item-info">
+                            <div class="tool-item-name">${escapeHtml(t.name)}</div>
+                            ${t.desc ? `<div class="tool-item-desc">${escapeHtml(t.desc)}</div>` : ''}
+                            <div class="tool-item-url">${escapeHtml(t.url)}</div>
+                        </div>
+                        <div class="tool-item-actions">
+                            <button onclick="moveTool(${j},-1)" title="上移">↑</button>
+                            <button onclick="moveTool(${j},1)" title="下移">↓</button>
+                            <button class="btn-edit" onclick="editTool(${j})">改</button>
+                            <button class="btn-delete" onclick="deleteTool(${j})">删</button>
+                        </div>
+                    </div>
+                `).join('')
+            }
+        </div>
+    `;
+}
+
+async function addCategory() {
+    if (!toolsLoaded) {
+        alert('⚠️ 工具数据还没加载完成，请稍等几秒再点');
+        return;
+    }
+    const name = prompt('新分类名称：');
+    if (!name || !name.trim()) return;
+    if (!Array.isArray(toolsData)) toolsData = [];
+    toolsData.push({ category: name.trim(), icon: '', desc: '', tools: [] });
+    currentCatIndex = toolsData.length - 1;
+    try {
+        await saveToolsData();
+        renderCatList();
+        renderCatDetail();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function deleteCategory(i) {
+    if (!confirm(`确定删除分类「${toolsData[i].category}」及其所有工具？`)) return;
+    toolsData.splice(i, 1);
+    if (currentCatIndex >= toolsData.length) currentCatIndex = toolsData.length - 1;
+    try {
+        await saveToolsData();
+        renderCatList();
+        renderCatDetail();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function moveCategory(i, dir) {
+    const j = i + dir;
+    if (j < 0 || j >= toolsData.length) return;
+    [toolsData[i], toolsData[j]] = [toolsData[j], toolsData[i]];
+    if (currentCatIndex === i) currentCatIndex = j;
+    else if (currentCatIndex === j) currentCatIndex = i;
+    try {
+        await saveToolsData();
+        renderCatList();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function saveCategoryMeta() {
+    const cat = toolsData[currentCatIndex];
+    const newName = document.getElementById('cat-name').value.trim();
+    if (!newName) { alert('分类名不能为空'); return; }
+    cat.icon     = document.getElementById('cat-icon').value.trim();
+    cat.category = newName;
+    cat.desc     = document.getElementById('cat-desc').value.trim();
+    try {
+        await saveToolsData();
+        renderCatList();
+        renderCatDetail();
+        alert('✅ 已保存');
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function addTool() {
+    const name = document.getElementById('new-tool-name').value.trim();
+    const url  = document.getElementById('new-tool-url').value.trim();
+    const desc = document.getElementById('new-tool-desc').value.trim();
+    if (!name || !url) { alert('工具名和 URL 必填'); return; }
+    toolsData[currentCatIndex].tools = toolsData[currentCatIndex].tools || [];
+    toolsData[currentCatIndex].tools.push({ name, url, desc });
+    try {
+        await saveToolsData();
+        renderCatDetail();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function editTool(j) {
+    const t = toolsData[currentCatIndex].tools[j];
+    const name = prompt('工具名：', t.name);
+    if (name === null) return;
+    const url = prompt('URL：', t.url);
+    if (url === null) return;
+    const desc = prompt('描述（可留空）：', t.desc || '');
+    if (desc === null) return;
+    if (!name.trim() || !url.trim()) { alert('工具名和 URL 必填'); return; }
+    t.name = name.trim();
+    t.url  = url.trim();
+    t.desc = desc.trim();
+    try {
+        await saveToolsData();
+        renderCatDetail();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function deleteTool(j) {
+    if (!confirm('确定删除该工具？')) return;
+    toolsData[currentCatIndex].tools.splice(j, 1);
+    try {
+        await saveToolsData();
+        renderCatDetail();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
+
+async function moveTool(j, dir) {
+    const arr = toolsData[currentCatIndex].tools;
+    const k = j + dir;
+    if (k < 0 || k >= arr.length) return;
+    [arr[j], arr[k]] = [arr[k], arr[j]];
+    try {
+        await saveToolsData();
+        renderCatDetail();
+    } catch (e) { alert('❌ 保存失败：' + e.message); }
+}
 
 // ========== 初始化 ==========
 document.addEventListener('DOMContentLoaded', () => {
