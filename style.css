@@ -348,49 +348,44 @@ body {
 }
 
 .tool-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 12px;
-    align-items: center;
+    justify-items: center;
+    max-width: 720px;
+    margin: 0 auto;
 }
 
 .tool-card {
     display: block;
     width: 100%;
-    max-width: 520px;
-    padding: 16px 22px;
+    padding: 12px 14px;
     background-color: #fafafa;
     border: 1px solid #eee;
-    border-radius: 10px;
+    border-radius: 8px;
     text-decoration: none;
     color: inherit;
     transition: all 0.2s;
-    text-align: left;
+    text-align: center;
 }
 
 .tool-card:hover {
     border-color: #3498db;
-    box-shadow: 0 3px 10px rgba(52, 152, 219, 0.12);
+    box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
     transform: translateY(-2px);
 }
 
 .tool-card-name {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #2c3e50;
-    margin-bottom: 4px;
+    margin-bottom: 3px;
 }
 
 .tool-card-desc {
-    color: #777;
-    font-size: 13px;
-    margin-bottom: 4px;
-}
-
-.tool-card-url {
-    color: #3498db;
+    color: #888;
     font-size: 12px;
-    word-break: break-all;
+    line-height: 1.4;
 }
 
 /* ========== 工具编辑 ========== */

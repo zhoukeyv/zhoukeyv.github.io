@@ -34,10 +34,9 @@ function renderTools(categories) {
             </div>
             <div class="tool-list">
                 ${(cat.tools || []).map(t => `
-                    <a class="tool-card" href="${escapeHtml(t.url)}" target="_blank" rel="noopener">
+                    <a class="tool-card" href="${escapeHtml(t.url)}" target="_blank" rel="noopener" title="${escapeHtml(t.url)}">
                         <div class="tool-card-name">${escapeHtml(t.name)}</div>
                         ${t.desc ? `<div class="tool-card-desc">${escapeHtml(t.desc)}</div>` : ''}
-                        <div class="tool-card-url">${escapeHtml(t.url)}</div>
                     </a>
                 `).join('')}
             </div>
