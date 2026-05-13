@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>编辑友链 - zky</title>
+    <title>编辑 - zky</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -21,75 +21,91 @@
                 <a href="index.html">主页</a>
                 <a href="projects.html">项目</a>
                 <a href="skills.html">技能</a>
-                <a href="links.html">友链</a>
                 <a href="tools.html">工具</a>
+                <a href="links.html">友链</a>
                 <a href="contact.html">联系</a>
             </nav>
         </aside>
 
         <main id="main">
-			<h2>编辑友链</h2>
+            <h2>编辑友链</h2>
 
-			<!-- 友链添加表单 -->
-			<div class="edit-form">
-				<h3>添加友链</h3>
+            <!-- 友链添加表单 -->
+            <div class="edit-form">
+                <h3>添加友链</h3>
 
-				<label>名字</label>
-				<input type="text" id="input-name" placeholder="如：张三">
+                <label>名字</label>
+                <input type="text" id="input-name" placeholder="如：张三">
 
-				<label>描述</label>
-				<input type="text" id="input-desc" placeholder="如：一个热爱编程的同学">
+                <label>描述</label>
+                <input type="text" id="input-desc" placeholder="如：一个热爱编程的同学">
 
-				<label>GitHub 用户名（可选）</label>
-				<input type="text" id="input-github" placeholder="如：zhangsan">
+                <label>GitHub 用户名（可选）</label>
+                <input type="text" id="input-github" placeholder="如：zhangsan">
 
-				<label>洛谷 UID（可选）</label>
-				<input type="text" id="input-luogu" placeholder="如：123456">
+                <label>洛谷 UID（可选）</label>
+                <input type="text" id="input-luogu" placeholder="如：123456">
 
-				<label>CodeForces 用户名（可选）</label>
-				<input type="text" id="input-codeforces" placeholder="如：zhangsan">
+                <label>CodeForces 用户名（可选）</label>
+                <input type="text" id="input-codeforces" placeholder="如：zhangsan">
 
-				<label>AtCoder 用户名（可选）</label>
-				<input type="text" id="input-atcoder" placeholder="如：zhangsan">
+                <label>AtCoder 用户名（可选）</label>
+                <input type="text" id="input-atcoder" placeholder="如：zhangsan">
 
-				<label>Email（可选）</label>
-				<input type="text" id="input-email" placeholder="如：zhangsan@example.com">
+                <label>Email（可选）</label>
+                <input type="text" id="input-email" placeholder="如：zhangsan@example.com">
 
-				<button class="btn-save" onclick="addFriend()">添加</button>
-			</div>
+                <button class="btn-save" onclick="addFriend()">添加</button>
+            </div>
 
-			<!-- 已有友链 -->
-			<h3>已有友链</h3>
-			<div class="friend-list-edit" id="friend-list-edit"></div>
+            <!-- 已有友链 -->
+            <h3>已有友链</h3>
+            <div class="friend-list-edit" id="friend-list-edit"></div>
 
-			<!-- 我的账号编辑 -->
-			<h2 style="margin-top: 50px;">我的账号</h2>
-			<div class="edit-form">
-				<h3>修改我的社交账号</h3>
+            <!-- 我的账号编辑 -->
+            <h2 style="margin-top: 50px;">我的账号</h2>
+            <div class="edit-form">
+                <h3>修改我的社交账号</h3>
 
-				<label>GitHub 用户名</label>
-				<input type="text" id="my-github" placeholder="如：zhoukeyv">
+                <label>GitHub 用户名</label>
+                <input type="text" id="my-github" placeholder="如：zhoukeyv">
 
-				<label>Email</label>
-				<input type="text" id="my-email" placeholder="如：coder1232026@outlook.com">
+                <label>Email</label>
+                <input type="text" id="my-email" placeholder="如：coder1232026@outlook.com">
 
-				<label>洛谷 UID</label>
-				<input type="text" id="my-luogu" placeholder="如：1534256">
+                <label>洛谷 UID</label>
+                <input type="text" id="my-luogu" placeholder="如：1534256">
 
-				<label>AtCoder 用户名</label>
-				<input type="text" id="my-atcoder" placeholder="如：cqbzzky">
+                <label>AtCoder 用户名</label>
+                <input type="text" id="my-atcoder" placeholder="如：cqbzzky">
 
-				<label>CodeForces 用户名</label>
-				<input type="text" id="my-codeforces" placeholder="如：cqbzzky">
+                <label>CodeForces 用户名</label>
+                <input type="text" id="my-codeforces" placeholder="如：cqbzzky">
 
-				<button class="btn-save" onclick="saveMyAccounts()">保存</button>
-			</div>
-		</main>
+                <button class="btn-save" onclick="saveMyAccounts()">保存</button>
+            </div>
+
+            <!-- 工具管理 -->
+            <h2 style="margin-top: 50px;">工具管理</h2>
+            <div class="tools-edit-layout">
+                <!-- 左：分类列表 -->
+                <aside class="tools-cat-list">
+                    <h3>分类</h3>
+                    <div id="tools-cat-items"></div>
+                    <button class="btn-save btn-add-cat" onclick="addCategory()">+ 新建分类</button>
+                </aside>
+
+                <!-- 右：选中分类的详情 -->
+                <div class="tools-cat-detail" id="tools-cat-detail">
+                    <p style="color:#999;text-align:center;padding:40px 0;">← 请选择或新建分类</p>
+                </div>
+            </div>
+        </main>
 
         <aside id="rsidebar">
-			<h3>找到我</h3>
-			<div class="social-links" id="my-social-links"></div>
-		</aside>
+            <h3>找到我</h3>
+            <div class="social-links" id="my-social-links"></div>
+        </aside>
 
         <footer id="footer">
             <p>&copy; 2026 周柯宇</p>
@@ -98,6 +114,6 @@
     </div>
 
     <script src="edit.js"></script>
-	<script src="my-accounts.js"></script>
+    <script src="my-accounts.js"></script>
 </body>
 </html>
