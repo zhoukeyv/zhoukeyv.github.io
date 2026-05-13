@@ -79,98 +79,6 @@
     ]
   },
   {
-    "category": "工具",
-    "icon": "",
-    "desc": "",
-    "tools": [
-      {
-        "name": "历年集训队论文",
-        "url": "https://github.com/OI-wiki/libs/tree/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87",
-        "desc": ""
-      },
-      {
-        "name": "画板 (Excalidraw)",
-        "url": "https://excalidraw.com/",
-        "desc": ""
-      },
-      {
-        "name": "图片转文字",
-        "url": "https://www.onlineocr.net/zh_hans/",
-        "desc": "在线 OCR"
-      },
-      {
-        "name": "图片视频工具",
-        "url": "https://ezgif.com/",
-        "desc": "各种图片、视频处理"
-      },
-      {
-        "name": "剪切板",
-        "url": "https://webnote.cc/",
-        "desc": "在线剪贴板"
-      },
-      {
-        "name": "Hydro 网盘",
-        "url": "https://hydro.ac/file",
-        "desc": ""
-      },
-      {
-        "name": "MEGA 网盘",
-        "url": "https://mega.nz/",
-        "desc": ""
-      },
-      {
-        "name": "Dropbox 网盘",
-        "url": "https://www.dropbox.com/",
-        "desc": ""
-      },
-      {
-        "name": "Koofr",
-        "url": "https://koofr.eu/",
-        "desc": "网盘"
-      },
-      {
-        "name": "原题机 1",
-        "url": "https://yuantiji.ac",
-        "desc": ""
-      },
-      {
-        "name": "原题机 2",
-        "url": "https://cpret.online/",
-        "desc": ""
-      },
-      {
-        "name": "AI 聊天",
-        "url": "https://xsimplechat.com/chat",
-        "desc": ""
-      },
-      {
-        "name": "题解自动机",
-        "url": "https://unigravityqwq.github.io/",
-        "desc": ""
-      },
-      {
-        "name": "画板 (drawio)",
-        "url": "https://www.drawio.com/",
-        "desc": ""
-      },
-      {
-        "name": "AtCoder Table",
-        "url": "https://kenkoooo.com/atcoder/#/table/",
-        "desc": ""
-      },
-      {
-        "name": "Codeforces Table",
-        "url": "https://cf.kira924age.com/#/table/",
-        "desc": ""
-      },
-      {
-        "name": "AI 原题机",
-        "url": "https://cpgraph.top/",
-        "desc": ""
-      }
-    ]
-  },
-  {
     "category": "软件",
     "icon": "",
     "desc": "",
@@ -268,6 +176,98 @@
       {
         "name": "Motrix",
         "url": "https://dl.motrix.app/release/Motrix-1.8.19-win.zip",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "category": "工具",
+    "icon": "",
+    "desc": "",
+    "tools": [
+      {
+        "name": "历年集训队论文",
+        "url": "https://github.com/OI-wiki/libs/tree/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87",
+        "desc": ""
+      },
+      {
+        "name": "画板 (Excalidraw)",
+        "url": "https://excalidraw.com/",
+        "desc": ""
+      },
+      {
+        "name": "图片转文字",
+        "url": "https://www.onlineocr.net/zh_hans/",
+        "desc": "在线 OCR"
+      },
+      {
+        "name": "图片视频工具",
+        "url": "https://ezgif.com/",
+        "desc": "各种图片、视频处理"
+      },
+      {
+        "name": "剪切板",
+        "url": "https://webnote.cc/",
+        "desc": "在线剪贴板"
+      },
+      {
+        "name": "Hydro 网盘",
+        "url": "https://hydro.ac/file",
+        "desc": ""
+      },
+      {
+        "name": "MEGA 网盘",
+        "url": "https://mega.nz/",
+        "desc": ""
+      },
+      {
+        "name": "Dropbox 网盘",
+        "url": "https://www.dropbox.com/",
+        "desc": ""
+      },
+      {
+        "name": "Koofr",
+        "url": "https://koofr.eu/",
+        "desc": "网盘"
+      },
+      {
+        "name": "原题机 1",
+        "url": "https://yuantiji.ac",
+        "desc": ""
+      },
+      {
+        "name": "原题机 2",
+        "url": "https://cpret.online/",
+        "desc": ""
+      },
+      {
+        "name": "AI 聊天",
+        "url": "https://xsimplechat.com/chat",
+        "desc": ""
+      },
+      {
+        "name": "题解自动机",
+        "url": "https://unigravityqwq.github.io/",
+        "desc": ""
+      },
+      {
+        "name": "画板 (drawio)",
+        "url": "https://www.drawio.com/",
+        "desc": ""
+      },
+      {
+        "name": "AtCoder Table",
+        "url": "https://kenkoooo.com/atcoder/#/table/",
+        "desc": ""
+      },
+      {
+        "name": "Codeforces Table",
+        "url": "https://cf.kira924age.com/#/table/",
+        "desc": ""
+      },
+      {
+        "name": "AI 原题机",
+        "url": "https://cpgraph.top/",
         "desc": ""
       }
     ]
