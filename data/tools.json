@@ -79,53 +79,197 @@
     ]
   },
   {
-    "category": "软件",
-    "icon": "",
-    "desc": "",
-    "tools": [
-      { "name": "VScode配置", "url": "https://cqbzzky.lanzoub.com/i4OTO3lwv95c", "desc": "" },
-      { "name": "git", "url": "https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/Git-2.52.0-64-bit.exe", "desc": "" },
-      { "name": "geek", "url": "https://geekuninstaller.com/geek.zip", "desc": "" },
-      { "name": "cp editor", "url": "https://gitee.com/ouuan/cpeditor/releases/download/7.0.1/cpeditor-7.0.1-windows-x64-setup.exe", "desc": "" },
-      { "name": "RedPanda Cpp", "url": "https://wwe.lanzoui.com/iuMUK3ciccpi", "desc": "" },
-      { "name": "Sublime Text", "url": "https://www.sublimetext.com/download_thanks?target=win-x64", "desc": "" },
-      { "name": "Sublime Text配置文件", "url": "https://cqbzzky.lanzoub.com/isgYg3mozkaf", "desc": "" },
-      { "name": "Fira code", "url": "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip", "desc": "" },
-      { "name": "MinGW", "url": "https://github.com/brechtsanders/winlibs_mingw/releases/download/15.2.0posix-13.0.0-ucrt-r4/winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4.7z", "desc": "" },
-      { "name": "Oracle JDK", "url": "https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe", "desc": "" },
-      { "name": "CPpython", "url": "https://www.python.org/ftp/python/pymanager/python-manager-25.2.msix", "desc": "" },
-      { "name": "Clang-format", "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.7/LLVM-21.1.7-win64.exe", "desc": "" },
-      { "name": "cf-tool", "url": "https://github.com/xalanq/cf-tool/releases/download/v1.0.0/cf_v1.0.0_windows_64.zip", "desc": "" },
-      { "name": "极域trainer", "url": "https://raw.githubusercontent.com/imengyu/JiYuTrainer/master/Release/JiYuTrainer.exe", "desc": "" },
-      { "name": "MarkText", "url": "https://github.com/chinayangxiaowei/marktext-chinese-language-pack/releases/download/v0.17.1/marktext-x64-win.zip", "desc": "" },
-      { "name": "Pandoc", "url": "https://github.com/jgm/pandoc/releases/download/3.8.3/pandoc-3.8.3-windows-x86_64.msi", "desc": "" },
-      { "name": "OICPP", "url": "https://oicpp.mywwzh.top/download", "desc": "" },
-      { "name": "Outlook", "url": "https://apps.microsoft.com/detail/9nrx63209r7b?hl=zh-CN&gl=US", "desc": "" },
-      { "name": "Motrix", "url": "https://dl.motrix.app/release/Motrix-1.8.19-win.zip", "desc": "" }
-    ]
-  },
-  {
     "category": "工具",
     "icon": "",
     "desc": "",
     "tools": [
-      { "name": "历年集训队论文", "url": "https://github.com/OI-wiki/libs/tree/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87", "desc": "" },
-      { "name": "画板 (Excalidraw)", "url": "https://excalidraw.com/", "desc": "" },
-      { "name": "图片转文字", "url": "https://www.onlineocr.net/zh_hans/", "desc": "在线 OCR" },
-      { "name": "图片视频工具", "url": "https://ezgif.com/", "desc": "各种图片、视频处理" },
-      { "name": "剪切板", "url": "https://webnote.cc/", "desc": "在线剪贴板" },
-      { "name": "Hydro 网盘", "url": "https://hydro.ac/file", "desc": "" },
-      { "name": "MEGA 网盘", "url": "https://mega.nz/", "desc": "" },
-      { "name": "Dropbox 网盘", "url": "https://www.dropbox.com/", "desc": "" },
-      { "name": "Koofr", "url": "https://koofr.eu/", "desc": "网盘" },
-      { "name": "原题机 1", "url": "https://yuantiji.ac", "desc": "" },
-      { "name": "原题机 2", "url": "https://cpret.online/", "desc": "" },
-      { "name": "AI 聊天", "url": "https://xsimplechat.com/chat", "desc": "" },
-      { "name": "题解自动机", "url": "https://unigravityqwq.github.io/", "desc": "" },
-      { "name": "画板 (drawio)", "url": "https://www.drawio.com/", "desc": "" },
-      { "name": "AtCoder Table", "url": "https://kenkoooo.com/atcoder/#/table/", "desc": "" },
-      { "name": "Codeforces Table", "url": "https://cf.kira924age.com/#/table/", "desc": "" },
-      { "name": "AI 原题机", "url": "https://cpgraph.top/", "desc": "" }
+      {
+        "name": "历年集训队论文",
+        "url": "https://github.com/OI-wiki/libs/tree/master/%E9%9B%86%E8%AE%AD%E9%98%9F%E5%8E%86%E5%B9%B4%E8%AE%BA%E6%96%87",
+        "desc": ""
+      },
+      {
+        "name": "画板 (Excalidraw)",
+        "url": "https://excalidraw.com/",
+        "desc": ""
+      },
+      {
+        "name": "图片转文字",
+        "url": "https://www.onlineocr.net/zh_hans/",
+        "desc": "在线 OCR"
+      },
+      {
+        "name": "图片视频工具",
+        "url": "https://ezgif.com/",
+        "desc": "各种图片、视频处理"
+      },
+      {
+        "name": "剪切板",
+        "url": "https://webnote.cc/",
+        "desc": "在线剪贴板"
+      },
+      {
+        "name": "Hydro 网盘",
+        "url": "https://hydro.ac/file",
+        "desc": ""
+      },
+      {
+        "name": "MEGA 网盘",
+        "url": "https://mega.nz/",
+        "desc": ""
+      },
+      {
+        "name": "Dropbox 网盘",
+        "url": "https://www.dropbox.com/",
+        "desc": ""
+      },
+      {
+        "name": "Koofr",
+        "url": "https://koofr.eu/",
+        "desc": "网盘"
+      },
+      {
+        "name": "原题机 1",
+        "url": "https://yuantiji.ac",
+        "desc": ""
+      },
+      {
+        "name": "原题机 2",
+        "url": "https://cpret.online/",
+        "desc": ""
+      },
+      {
+        "name": "AI 聊天",
+        "url": "https://xsimplechat.com/chat",
+        "desc": ""
+      },
+      {
+        "name": "题解自动机",
+        "url": "https://unigravityqwq.github.io/",
+        "desc": ""
+      },
+      {
+        "name": "画板 (drawio)",
+        "url": "https://www.drawio.com/",
+        "desc": ""
+      },
+      {
+        "name": "AtCoder Table",
+        "url": "https://kenkoooo.com/atcoder/#/table/",
+        "desc": ""
+      },
+      {
+        "name": "Codeforces Table",
+        "url": "https://cf.kira924age.com/#/table/",
+        "desc": ""
+      },
+      {
+        "name": "AI 原题机",
+        "url": "https://cpgraph.top/",
+        "desc": ""
+      }
+    ]
+  },
+  {
+    "category": "软件",
+    "icon": "",
+    "desc": "",
+    "tools": [
+      {
+        "name": "VScode配置",
+        "url": "https://cqbzzky.lanzoub.com/i4OTO3lwv95c",
+        "desc": ""
+      },
+      {
+        "name": "git",
+        "url": "https://github.com/git-for-windows/git/releases/download/v2.52.0.windows.1/Git-2.52.0-64-bit.exe",
+        "desc": ""
+      },
+      {
+        "name": "geek",
+        "url": "https://geekuninstaller.com/geek.zip",
+        "desc": ""
+      },
+      {
+        "name": "cp editor",
+        "url": "https://gitee.com/ouuan/cpeditor/releases/download/7.0.1/cpeditor-7.0.1-windows-x64-setup.exe",
+        "desc": ""
+      },
+      {
+        "name": "RedPanda Cpp",
+        "url": "https://wwe.lanzoui.com/iuMUK3ciccpi",
+        "desc": ""
+      },
+      {
+        "name": "Sublime Text",
+        "url": "https://www.sublimetext.com/download_thanks?target=win-x64",
+        "desc": ""
+      },
+      {
+        "name": "Sublime Text配置文件",
+        "url": "https://cqbzzky.lanzoub.com/isgYg3mozkaf",
+        "desc": ""
+      },
+      {
+        "name": "Fira code",
+        "url": "https://github.com/tonsky/FiraCode/releases/download/6.2/Fira_Code_v6.2.zip",
+        "desc": ""
+      },
+      {
+        "name": "MinGW",
+        "url": "https://github.com/brechtsanders/winlibs_mingw/releases/download/15.2.0posix-13.0.0-ucrt-r4/winlibs-x86_64-posix-seh-gcc-15.2.0-mingw-w64ucrt-13.0.0-r4.7z",
+        "desc": ""
+      },
+      {
+        "name": "Oracle JDK",
+        "url": "https://download.oracle.com/java/25/latest/jdk-25_windows-x64_bin.exe",
+        "desc": ""
+      },
+      {
+        "name": "CPpython",
+        "url": "https://www.python.org/ftp/python/pymanager/python-manager-25.2.msix",
+        "desc": ""
+      },
+      {
+        "name": "Clang-format",
+        "url": "https://github.com/llvm/llvm-project/releases/download/llvmorg-21.1.7/LLVM-21.1.7-win64.exe",
+        "desc": ""
+      },
+      {
+        "name": "cf-tool",
+        "url": "https://github.com/xalanq/cf-tool/releases/download/v1.0.0/cf_v1.0.0_windows_64.zip",
+        "desc": ""
+      },
+      {
+        "name": "极域trainer",
+        "url": "https://raw.githubusercontent.com/imengyu/JiYuTrainer/master/Release/JiYuTrainer.exe",
+        "desc": ""
+      },
+      {
+        "name": "MarkText",
+        "url": "https://github.com/chinayangxiaowei/marktext-chinese-language-pack/releases/download/v0.17.1/marktext-x64-win.zip",
+        "desc": ""
+      },
+      {
+        "name": "Pandoc",
+        "url": "https://github.com/jgm/pandoc/releases/download/3.8.3/pandoc-3.8.3-windows-x86_64.msi",
+        "desc": ""
+      },
+      {
+        "name": "OICPP",
+        "url": "https://oicpp.mywwzh.top/download",
+        "desc": ""
+      },
+      {
+        "name": "Outlook",
+        "url": "https://apps.microsoft.com/detail/9nrx63209r7b?hl=zh-CN&gl=US",
+        "desc": ""
+      },
+      {
+        "name": "Motrix",
+        "url": "https://dl.motrix.app/release/Motrix-1.8.19-win.zip",
+        "desc": ""
+      }
     ]
   }
 ]
