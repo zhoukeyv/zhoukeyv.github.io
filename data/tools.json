@@ -12,7 +12,7 @@
       {
         "name": "TamperMonkey",
         "url": "https://chromewebstore.google.com/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?utm_source=ext_app_menu",
-        "desc": "可以安装插件。"
+        "desc": "可以运行脚本。"
       }
     ]
   }
