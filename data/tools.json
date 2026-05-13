@@ -65,6 +65,11 @@
         "name": "Atcoder Predictor",
         "url": "https://update.greasyfork.org/scripts/567082/ac-predictor-zh.user.js",
         "desc": ""
+      },
+      {
+        "name": "Vjudge Better",
+        "url": "https://raw.githubusercontent.com/zhangyimin12345/Better-VJudge/refs/heads/main/index.user.js",
+        "desc": ""
       }
     ]
   }
