@@ -28,6 +28,11 @@
         "name": "Competitive Companion",
         "url": "https://microsoftedge.microsoft.com/addons/detail/competitive-companion-cus/acmkjajhbedbffpmmakkegochjenpeeg",
         "desc": "可以爬取题目样例至IDE。（Edge）"
+      },
+      {
+        "name": "TamperMonkey",
+        "url": "https://microsoftedge.microsoft.com/addons/detail/%E7%AF%A1%E6%94%B9%E7%8C%B4/iikmkjmpaadaobahmlepeloendndfphd?hl=zh-CN",
+        "desc": "可以运行脚本。（Edge）"
       }
     ]
   }
