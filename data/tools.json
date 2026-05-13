@@ -55,6 +55,11 @@
         "name": "Atcoder Better",
         "url": "https://update.greasyfork.org/scripts/471106/Atcoder%20Better%21.user.js",
         "desc": ""
+      },
+      {
+        "name": "CodeForces Better",
+        "url": "https://update.greasyfork.org/scripts/465777/Codeforces%20Better%21.user.js",
+        "desc": ""
       }
     ]
   }
