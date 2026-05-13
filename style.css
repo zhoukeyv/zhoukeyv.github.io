@@ -348,8 +348,9 @@ body {
 }
 
 .tool-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 14px;
     max-width: 680px;
     margin: 0 auto;
@@ -359,6 +360,7 @@ body {
 
 .tool-card {
     display: block;
+    width: 140px;
     padding: 10px 12px;
     background-color: #fafafa;
     border: 1px solid #eee;
