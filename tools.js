@@ -16,6 +16,8 @@ async function loadTools() {
 
 function renderTools(categories) {
     const container = document.getElementById('tools-container');
+    if (!container) return;
+
     if (!categories || !categories.length) {
         container.innerHTML = '<p style="color:#999;text-align:center;">暂无工具。</p>';
         return;
