@@ -60,6 +60,11 @@
         "name": "CodeForces Better",
         "url": "https://update.greasyfork.org/scripts/465777/Codeforces%20Better%21.user.js",
         "desc": ""
+      },
+      {
+        "name": "Atcoder Predictor",
+        "url": "https://update.greasyfork.org/scripts/567082/ac-predictor-zh.user.js",
+        "desc": ""
       }
     ]
   }
