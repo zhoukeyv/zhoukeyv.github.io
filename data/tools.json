@@ -23,6 +23,11 @@
         "name": "cph-ng submit",
         "url": "https://github.com/langningchen/cph-ng/releases/download/v0.7.8/cph-ng-submit-0.7.8-chrome.zip",
         "desc": "使 cph-ng 可以直接提交。（Google）"
+      },
+      {
+        "name": "Competitive Companion",
+        "url": "https://microsoftedge.microsoft.com/addons/detail/competitive-companion-cus/acmkjajhbedbffpmmakkegochjenpeeg",
+        "desc": "可以爬取题目样例至IDE。（Edge）"
       }
     ]
   }
