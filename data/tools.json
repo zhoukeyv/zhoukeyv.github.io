@@ -3,6 +3,12 @@
     "category": "插件和脚本",
     "icon": "",
     "desc": "插件和脚本",
-    "tools": []
+    "tools": [
+      {
+        "name": "Competitive Companion",
+        "url": "https://chromewebstore.google.com/detail/competitive-companion/cjnmckjndlpiamhfimnnjmnckgghkjbl",
+        "desc": "可以爬取题目样例至IDE。"
+      }
+    ]
   }
 ]
