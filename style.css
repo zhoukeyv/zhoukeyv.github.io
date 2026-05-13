@@ -349,24 +349,25 @@ body {
 
 .tool-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-    gap: 12px;
-    justify-items: center;
-    max-width: 720px;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 14px;
+    max-width: 680px;
     margin: 0 auto;
+    padding: 0 4px;
+    box-sizing: border-box;
 }
 
 .tool-card {
     display: block;
-    width: 100%;
-    padding: 12px 14px;
+    padding: 10px 12px;
     background-color: #fafafa;
     border: 1px solid #eee;
     border-radius: 8px;
     text-decoration: none;
     color: inherit;
-    transition: all 0.2s;
     text-align: center;
+    transition: all 0.2s;
+    box-sizing: border-box;
 }
 
 .tool-card:hover {
@@ -376,15 +377,15 @@ body {
 }
 
 .tool-card-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: bold;
     color: #2c3e50;
-    margin-bottom: 3px;
+    margin-bottom: 2px;
 }
 
 .tool-card-desc {
     color: #888;
-    font-size: 12px;
+    font-size: 11px;
     line-height: 1.4;
 }
 
