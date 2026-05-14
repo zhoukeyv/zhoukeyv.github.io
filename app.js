@@ -122,5 +122,32 @@ async function renderLinksPage() {
     }
 }
 
+// ===== 简易 Hash 路由 =====
+function switchRoute(route) {
+    // 默认主页
+    if (!route) route = 'home';
+
+    // 切换内容
+    document.querySelectorAll('.route-page').forEach(p => {
+        p.classList.toggle('active', p.dataset.page === route);
+    });
+
+    // 高亮导航
+    document.querySelectorAll('.side-nav a').forEach(a => {
+        a.classList.toggle('active', a.dataset.route === route);
+    });
+}
+
+// 监听 hash 变化
+window.addEventListener('hashchange', () => {
+    switchRoute(location.hash.replace('#', ''));
+});
+
+// 首次加载
+document.addEventListener('DOMContentLoaded', () => {
+    switchRoute(location.hash.replace('#', '') || 'home');
+});
+
+
 // ========== 初始化 ==========
 document.addEventListener('DOMContentLoaded', handleRouteChange);
