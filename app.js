@@ -10,6 +10,7 @@ const PAGE_TITLES = {
     skills:   '技能 - zky',
     tools:    '工具 - zky',
     links:    '友链 - zky',
+    about:    '关于 - zky',
     contact:  '联系 - zky'
 };
 
